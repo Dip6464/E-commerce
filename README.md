@@ -14,6 +14,8 @@
 ## Contact Us Page 
 <img width="937" height="842" alt="Image" src="https://github.com/user-attachments/assets/dfc0f687-6866-4db6-b9df-f49804e2cbd4" />
 
+## Featured Products Page 
 <img width="810" height="897" alt="Image" src="https://github.com/user-attachments/assets/209eb25b-37c2-4cae-a144-f48c98c3dc32" />
 
+## Add Product Page 
 <img width="1402" height="907" alt="Image" src="https://github.com/user-attachments/assets/5ccec909-8a34-40fe-b073-edac1f0cf624" />
