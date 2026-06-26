@@ -109,3 +109,35 @@ code {
   padding: 4px 8px;
   background: var(--code-bg);
 }
+
+.auth-container {
+  width: 400px;
+  margin: 80px auto;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.auth-container input {
+  padding: 14px;
+  font-size: 16px;
+  border: 1px solid gray;
+  border-radius: 8px;
+}
+
+.auth-container button {
+  padding: 14px;
+  font-size: 16px;
+  background: #7c3aed;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.auth-container button:hover {
+  opacity: 0.85;
+}

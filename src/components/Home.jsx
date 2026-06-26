@@ -1,53 +1,18 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { supabase } from "../supabse";
+import { Link } from "react-router-dom";
+import { supabase } from "../supabase";
+
 export function Home() {
-  const [product1,setproduct1] = useState([])
-  useEffect(()=>{readproduct1()},[])
-  async function readproduct1(){
-    const {data} = await supabase.from("Products").select("*")
-    setproduct1(data)
+  const [product1, setproduct1] = useState([]);
+
+  useEffect(() => {
+    readproduct1();
+  }, []);
+
+  async function readproduct1() {
+    const { data } = await supabase.from("Products").select("*");
+    setproduct1(data || []);
   }
-    
-  
-  const products = [
-    {
-      id: 1,
-      name: "Wireless Bluetooth Headphones",
-      price: "$89",
-      image: "🎧",
-    },
-    {
-      id: 2,
-      name: "Smart Fitness Watch",
-      price: "$129",
-      image: "⌚",
-    },
-    {
-      id: 3,
-      name: "Professional Gaming Mouse",
-      price: "$49",
-      image: "🖱️",
-    },
-    {
-      id: 4,
-      name: "Premium Laptop Backpack",
-      price: "$59",
-      image: "🎒",
-    },
-    {
-      id: 5,
-      name: "Portable Bluetooth Speaker",
-      price: "$79",
-      image: "🔊",
-    },
-    {
-      id: 6,
-      name: "Latest Generation Smartphone",
-      price: "$499",
-      image: "📱",
-    },
-  ];
 
   return (
     <>
@@ -211,7 +176,7 @@ export function Home() {
               marginBottom: "50px",
             }}
           >
-            Explore our most popular products
+            Explore our products
           </p>
 
           <div
@@ -223,7 +188,7 @@ export function Home() {
               alignItems: "stretch",
             }}
           >
-            {products.map((product) => (
+            {product1.map((product) => (
               <div
                 key={product.id}
                 style={{
@@ -237,92 +202,17 @@ export function Home() {
                   height: "100%",
                 }}
               >
-                {/* Image */}
-                <div
-                  style={{
-                    width: "100%",
-                    height: "120px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: "80px",
-                    marginBottom: "15px",
-                  }}
-                >
-                  {product.image}
-                </div>
-
-                {/* Product Name */}
-                <h3
-                  style={{
-                    color: "#1e293b",
-                    margin: "0",
-                    minHeight: "60px",
-                    textAlign: "center",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    lineHeight: "1.4",
-                  }}
-                >
-                  {product.name}
-                </h3>
-
-                {/* Price */}
-                <p
-                  style={{
-                    color: "#4f46e5",
-                    fontSize: "1.4rem",
-                    fontWeight: "700",
-                    margin: "15px 0",
-                  }}
-                >
-                  {product.price}
-                </p>
-
-                {/* Button stays aligned */}
-                <div
-                  style={{
-                    marginTop: "auto",
-                    width: "100%",
-                  }}
-                >
-                  
-                </div>
-              </div>
-            ))}
-             {product1.map((product) => (
-              <div
-                key={product.id}
-                style={{
-                  background: "#fff",
-                  borderRadius: "20px",
-                  padding: "25px",
-                  boxShadow: "0 10px 25px rgba(0,0,0,0.08)",
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  height: "100%",
-                }}
-              >
-                {/* Image */}
                 <img
                   style={{
-                    objectFit:'contain',
+                    objectFit: "contain",
                     width: "100%",
                     height: "120px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    fontSize: "80px",
                     marginBottom: "15px",
                   }}
                   src={product.image_url}
-                >
-                  
-                </img>
+                  alt={product.Name}
+                />
 
-                {/* Product Name */}
                 <h3
                   style={{
                     color: "#1e293b",
@@ -338,7 +228,6 @@ export function Home() {
                   {product.Name}
                 </h3>
 
-                {/* Price */}
                 <p
                   style={{
                     color: "#4f46e5",
@@ -347,41 +236,31 @@ export function Home() {
                     margin: "15px 0",
                   }}
                 >
-                  {product.Price}
+                  ₹{product.Price}
                 </p>
-
-                {/* Button stays aligned */}
-                <div
-                  style={{
-                    marginTop: "auto",
-                    width: "100%",
-                  }}
-                >
-                  
-                </div>
               </div>
             ))}
           </div>
         </div>
+
         <br />
         <br />
-        <a href="/Addproduct">
- <button
-  
-  style={{
-    backgroundColor: "white",
-    color: "#2563eb",
-    border: "none",
-    padding: "12px 25px",
-    borderRadius: "5px",
-    fontSize: "1rem",
-    cursor: "pointer",
-  }}
->
-  Add Item
-</button>
-</a>
-       
+
+        <Link to="/Addproduct">
+          <button
+            style={{
+              backgroundColor: "white",
+              color: "#2563eb",
+              border: "none",
+              padding: "12px 25px",
+              borderRadius: "5px",
+              fontSize: "1rem",
+              cursor: "pointer",
+            }}
+          >
+            Add Item
+          </button>
+        </Link>
       </section>
     </>
   );

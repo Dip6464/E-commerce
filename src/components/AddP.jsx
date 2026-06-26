@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { supabase } from "../supabse";
+import { supabase } from "../supabase";
 import "./Addp.css";
 
 export function Addp() {

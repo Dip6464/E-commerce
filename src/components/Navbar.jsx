@@ -1,20 +1,28 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { supabase } from "../supabase";
 
 export function Navbar() {
   const [shrink, setShrink] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setShrink(true);
-      } else {
-        setShrink(false);
-      }
+      setShrink(window.scrollY > 50);
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  async function handleLogout() {
+    const { error } = await supabase.auth.signOut();
+
+    if (error) {
+      alert(error.message);
+    } else {
+      alert("Logged out successfully");
+    }
+  }
 
   return (
     <>
@@ -47,7 +55,6 @@ export function Navbar() {
           transition: all 0.3s ease;
         }
 
-        /* LOGO ANIMATION */
         .logo {
           font-size: ${shrink ? "1.3rem" : "1.6rem"};
           font-weight: 900;
@@ -119,11 +126,20 @@ export function Navbar() {
           width: 100%;
         }
 
-       
+        .logout-btn {
+          padding: 10px 18px;
+          border: none;
+          border-radius: 10px;
+          background: linear-gradient(90deg, #ef4444, #dc2626);
+          color: white;
+          font-weight: 600;
+          cursor: pointer;
+          transition: 0.3s;
+        }
 
-        .nav-links li:last-child a:hover {
-          background: rgba(96, 165, 250, 0.25);
-          border-color: rgba(96, 165, 250, 0.5);
+        .logout-btn:hover {
+          transform: scale(1.05);
+          box-shadow: 0 0 15px rgba(239,68,68,0.4);
         }
 
         @media (max-width: 768px) {
@@ -144,12 +160,16 @@ export function Navbar() {
         <div className="logo">EliteMart</div>
 
         <ul className="nav-links">
-          <li><a href="/" className="active">Home</a></li>
-          <li><a href="/about">About</a></li>
-          <li><a href="/service">Service</a></li>
-          <li><a href="/blog">Blog</a></li>
-          <li><a href="/contact">Contact</a></li>
-          
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/about">About</Link></li>
+          <li><Link to="/service">Service</Link></li>
+          <li><Link to="/blog">Blog</Link></li>
+          <li><Link to="/contact">Contact</Link></li>
+          <li>
+            <button className="logout-btn" onClick={handleLogout}>
+              Logout
+            </button>
+          </li>
         </ul>
       </nav>
     </>
