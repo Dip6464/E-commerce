@@ -278,7 +278,9 @@ export function About() {
             </button>
           </div>
         </div>
+        <p>HIIIIIIII</p>
       </div>
     </section>
+   
   );
 }
